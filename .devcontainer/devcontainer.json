@@ -1,13 +1,9 @@
 {
   "name": "RDP with Tailscale",
-  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
   
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true
-    }
+    "ghcr.io/devcontainers/features/tailscale:1": {}
   },
 
   "forwardPorts": [3389],
