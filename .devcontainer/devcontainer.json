@@ -1,6 +1,42 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "name": "RDP with Tailscale",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  
   "features": {
-    "ghcr.io/devcontainers/features/tailscale:1": {}
-  }
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    }
+  },
+
+  "forwardPorts": [3389],
+  "portsAttributes": {
+    "3389": {
+      "label": "RDP",
+      "protocol": "tcp"
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "ms-vscode-remote.remote-ssh"
+      ]
+    }
+  },
+
+  "remoteUser": "codespace",
+  "containerUser": "codespace",
+
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
+  ],
+
+  "runArgs": [
+    "--privileged"
+  ]
 }
